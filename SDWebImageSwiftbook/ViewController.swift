@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
     
@@ -38,7 +39,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let currentImageUrl = imageUrls[indexPath.row]
         
         let myImageView = UIImageView()
-        myImageView.backgroundColor = .red
+//        myImageView.backgroundColor = .red
+        guard let url = URL(string: currentImageUrl) else { return cell }
+//        myImageView.sd_setImage(with: url, completed: nil)
+        myImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "five"), options: [.continueInBackground,.progressiveLoad], completed: nil)
         cell.addSubview(myImageView)
         
         
